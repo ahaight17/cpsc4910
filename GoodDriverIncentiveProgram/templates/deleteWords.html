@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="icon" type="image/x-icon" href="{% static "favicon.ico" %}">
+        <link rel="shortcut icon" href="{% static "favicon.ico" %}" type="image/x-icon">
+        <title>Good Driver Incentive Program</title>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+        <!-- Your custom styles (optional) -->
+        <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+      </head>
+    <body class="grey lighten-3">
+
+        <div class="mt-5 pt-4">
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                {% endfor %}
+            {% endif %}
+          </div>
+
+        <!-- Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+    <div class="container">
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'index' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'admin:index' %}">Admin</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'signup' %}">Sign Up</a>
+          </li>
+          {# Some logic on what to display for last item#}
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'logout' %}">Logout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'catalog:catalog' %}">Catalog</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'GoodDriverIncentive:user_login' %}">Catalog</a>
+          </li>
+          {% endif %}
+        </ul>
+
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item">
+            <a href="/catalog/checkout/" class="nav-link waves-effect">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+
+        <div class="card formCard">
+            <div class="card-body">
+                {% for word in allWords %}
+                <form action="{% url 'catalog:deleteWords' %}" method="POST">
+                    {% csrf_token %}
+                    <ul class="list-group">
+                        <li class="list-group-item">{{word.word}} 
+                            <input style="float: right;" class="btn btn-danger" type="submit" value="Delete">
+                            <input type="hidden" value={{word.pk}} name="pk"> 
+                        </li>
+                    </ul>
+                    <!-- <table>
+                        <th><h3>{{word.word}}</h3></th>
+                        <th><input class="btn btn-light" type="submit" value="Delete"></th>
+                        <th><input type="hidden" value={{word.pk}} name="pk"></th>
+                    </table> -->
+                </form>
+                {% empty %}
+                    <h3>No words added yet</h3>
+                {% endfor %}
+                <a class="btn btn-info" href="{% url 'catalog:addWords' %}">Add key words</a>
+                <a class="btn btn-info" href="{% url 'catalog:catalog' %}">Return to catalog</a>
+            </div>
+        </div>
+    </body>
+</html>

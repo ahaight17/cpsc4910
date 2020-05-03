@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+<style>
+  .errorlist{
+    color: red; font-weight: bold;
+  }
+</style>
+  <div class="container">
+    <div class="jumbotron">
+      {% if registered %}
+        <h1>Thank you for registering!</h1>
+      {% else %}
+        <h1>Sign Up as a {{ user_type }}</h1>
+        <form enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ next }}">
+          {{ form|crispy }}
+          <button type="submit" class="btn btn-success">Sign Up</button>
+        </form>
+        
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

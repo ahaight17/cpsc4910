@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block body_block %}
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Login here:</h1>
+<form method="post" action="{% url 'GoodDriverIncentive:user_login' %}">
+          {% csrf_token %}
+          {# A more "HTML" way of creating the login form#}
+          <h5 style="color: red; font-weight: bold">{{ login_message }}</h5>
+          <label for="username"><h3 style='font-weight: bold;'>Username:</h3></label>
+          <input type="text" name="username" placeholder="Username">
+<label for="password"><h3 style='font-weight: bold;'>Password:</h3></label>
+          <input type="password" name="password" placeholder="Password">
+<input type="submit" name="" value="Login">
+</form>
+<p>Can't remember? <a href="{% url 'password_reset' %}">Reset password</a></p>
+</div>
+  </div>
+{% endblock %}

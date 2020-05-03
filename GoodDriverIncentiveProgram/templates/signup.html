@@ -1,0 +1,9 @@
+<!-- templates/signup.html -->
+{% extends 'base.html' %}
+
+{% block body_block %}
+  <h2>Sign up</h2>
+  <p class="lead" style="color:white">Select the type of account you want to create</p>
+  <a href="{% url 'driver_signup' %}" class="btn btn-driver btn-lg" role="button">I'm a driver</a>
+  <a href="{% url 'sponsor_signup' %}" class="btn btn-sponsor btn-lg" role="button">I'm a sponsor</a>
+{% endblock %}

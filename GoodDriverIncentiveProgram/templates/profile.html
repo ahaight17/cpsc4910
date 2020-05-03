@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block body_block %}
+<div class="container">
+  </div>
+    <h1>Profile Page</h1>
+    <h2>First Name: {{ user.first_name }}</h2>
+    <h2>Last Name: {{ user.last_name }}</h2>
+    <h2>Email: {{ user.email }}</h2>
+    <h2>Points Accumulated: ONE MILLION DOLLARS </h2>
+    <h2>Sponsors:</h2>
+    {% for e in object %}
+        <p style="margin-left: 160px">{{ e.first_name }} {{ e.last_name }}</p>
+    {% endfor %}
+</div>
+{% endblock %}

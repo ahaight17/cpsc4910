@@ -1,0 +1,62 @@
+body {
+    background-color: #201f1d;
+}
+
+.navbar, .navbar-default, .navbar-static-top, .nav, .navbar-nav {
+    color: #dcdcdc;
+    background-color: #de8d47;
+}
+
+.jumbotron, a.navbar-link {
+    color: white  !important;
+    background-color: #868685;
+}
+
+a.navbar-link:hover {
+    color: #dcdcdc !important;
+}
+a:hover {
+    color: #dcdcdc !important; 
+}
+
+.logo {
+    height: 140%;
+}
+
+input {
+    color: black;
+}
+
+h1, h2, table {
+    color: #dcdcdc;
+    font-family: linotype-vectora, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+h1, h2 {
+    color: #dcdcdc;
+    font-family: linotype-vectora, sans-serif;
+    font-weight: 700;
+    font-style: normal; 
+}
+h3, h4 {
+    color: #dcdcdc;
+    font-family: linotype-vectora, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+label, p {
+    color: #dcdcdc;
+}
+
+.formCard{
+
+    width: 50%;
+	height: 50%;
+    position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;	
+	margin: auto;
+}
